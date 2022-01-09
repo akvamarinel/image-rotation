@@ -48,7 +48,7 @@ void get_pixels (FILE * file, struct image * image, uint64_t width, uint64_t hei
         fread(&image->data[i*width], sizeof(struct pixel), width, file);
         fseek(file, padding, SEEK_CUR);
     }
-};
+}
 void write_pixels(FILE* file,struct image* image, uint64_t width, uint64_t height, uint8_t padding) {
     uint8_t buf_pad [4] = {0};
     for (size_t i = 0; i < height; ++i) {
