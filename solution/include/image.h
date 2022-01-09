@@ -18,4 +18,4 @@ struct image {
 
 struct image create_image(const uint64_t width, const uint64_t height);
 
-#endif //UNTITLED7_IMAGE_H
+#endif

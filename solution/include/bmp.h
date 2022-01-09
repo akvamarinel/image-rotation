@@ -45,13 +45,13 @@ enum read_status  {
     READ_INVALID_SIGNATURE,
     READ_INVALID_BITS,
     READ_INVALID_HEADER
-    /* коды других ошибок  */
+
 };
 
 enum  write_status  {
     WRITE_OK = 0,
     WRITE_ERROR
-    /* коды других ошибок  */
+
 };
 
 
@@ -59,4 +59,4 @@ enum  write_status  {
 enum read_status from_bmp(FILE * file, struct image * image);
 enum write_status to_bmp_and_rotate(FILE * file, struct image * image);
 
-#endif //UNTITLED7_BMP_H
+#endif

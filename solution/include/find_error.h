@@ -10,4 +10,4 @@ void print_read_error (uint32_t status);
 void print_write_error (uint32_t status);
 void print_open_error (uint32_t status);
 
-#endif //UNTITLED7_FIND_ERROR_H
+#endif

@@ -18,4 +18,4 @@ enum open_status {
 bool read_pic (char*, struct image *);
 bool create_pic(char*, struct image *);
 
-#endif //UNTITLED7_SERIALIZATION_H
+#endif
