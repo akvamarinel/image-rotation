@@ -8,12 +8,12 @@ int main(int argc, char* const argv []) {
     bool status = read_pic(argv[1], &image);
 
     if (!status){
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
 
     bool new_status = create_pic(argv[2], &image);
     if(!new_status) {
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     return 0;
 }
