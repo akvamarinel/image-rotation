@@ -7,10 +7,10 @@
 
 static uint64_t get_x(uint64_t i, uint64_t j, uint64_t width){
     return j * width + (width - i - 1);
-};
+}
 static uint64_t get_y (uint64_t i, uint64_t j, uint64_t width){
     return i * width + j;
-};
+}
 
 void rotate(struct image * old_image, struct image new_image) {
     for ( uint64_t i = 0; i < old_image->height; i++) {
@@ -19,4 +19,4 @@ void rotate(struct image * old_image, struct image new_image) {
         }
     }
 
-};
+}
