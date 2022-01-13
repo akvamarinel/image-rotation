@@ -8,14 +8,13 @@
 #include <malloc.h>
 #include <stdbool.h>
 
-uint8_t get_padding(uint64_t width){
+uint8_t get_padding(const uint64_t width){
     return(4 - (width * sizeof (struct pixel)) % 4) % 4;
 }
 
-struct bmp_header create_header(struct image * image){
+static struct bmp_header create_header(const struct image * image){
 
     uint8_t padding = get_padding(image->width);
-            //(4 - (image->width * sizeof (struct pixel)) % 4) % 4;
     size_t size = (image->height * ((image->width) + padding)) * sizeof(struct pixel);
     struct bmp_header new_header = {
             .bfType = SIG_FORM,
@@ -37,7 +36,7 @@ struct bmp_header create_header(struct image * image){
     return new_header;
 }
 
-enum read_status check (struct bmp_header* header){
+static enum read_status check (const struct bmp_header* header){
     if (header->bfType != SIG_FORM) {
         print_read_error(READ_INVALID_SIGNATURE);
         return READ_INVALID_SIGNATURE;
@@ -49,7 +48,7 @@ enum read_status check (struct bmp_header* header){
     return READ_OK;
 }
 
-void get_pixels (FILE * file, struct image * image, uint64_t width, uint64_t height, uint8_t padding){
+static void get_pixels (FILE * file, struct image * image, const uint64_t width, const uint64_t height, const uint8_t padding){
     for(size_t i = 0; i < height; i++ ) {
         fread(&image->data[i*width], sizeof(struct pixel), width, file);
         fseek(file, padding, SEEK_CUR);
@@ -57,14 +56,14 @@ void get_pixels (FILE * file, struct image * image, uint64_t width, uint64_t hei
 }
 
 
-void write_pixels(FILE* file,struct image* image, uint64_t width, uint64_t height, uint8_t padding) {
+static void write_pixels(FILE* file,struct image* image, const uint64_t width, const uint64_t height, const uint8_t padding) {
     uint8_t buf_pad [4] = {0};
     for (size_t i = 0; i < height; ++i) {
         fwrite(&(image->data[i * width]), sizeof(struct pixel), width, file);
         fwrite(&buf_pad, 1, padding, file);
     }
 }
-void make_free(struct image * old_image, struct image * new_image){
+static void make_free(struct image * old_image, struct image * new_image){
     free(old_image->data);
     free(new_image->data);
 }
