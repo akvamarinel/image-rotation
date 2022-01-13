@@ -10,16 +10,14 @@
 bool read_pic (char* path, struct image * image){ //fixme add argument (from_bmp)
     FILE * file = NULL;
     file = fopen(path, "rb");
-    if (file == NULL) {
+    if (!file) {
         print_error(open_msg[OPEN_ERROR]);
 
-       // print_open_error(OPEN_ERROR);
         return false;
     }
     enum read_status status = from_bmp(file, image);
     if(status != READ_OK) {
         print_error(read_msg[status]);
-        //print_read_error(status);
         fclose(file);
         return false;
     }
@@ -30,7 +28,10 @@ bool read_pic (char* path, struct image * image){ //fixme add argument (from_bmp
 bool create_pic(char* path, struct image * image, struct image * new_image ) {
     FILE * file = NULL;
     file = fopen(path, "wb");
-    if(file == NULL) {
+    if(!new_image->data){
+        print_error(open_msg[READ_ALLOC_ERROR]);
+    }
+    if(!file) {
         return false;
     }
     enum write_status status = to_bmp(file, image, new_image);

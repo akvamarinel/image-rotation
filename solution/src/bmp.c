@@ -15,7 +15,7 @@ static uint8_t get_padding(const uint64_t width){
 static struct bmp_header create_header(const struct image * image){
 
     const uint8_t padding = get_padding(image->width);
-    size_t size = (image->height * ((image->width) + padding)) * sizeof(struct pixel);
+    const size_t size = (image->height * ((image->width) + padding)) * sizeof(struct pixel);
     struct bmp_header new_header = {
             .bfType = SIG_FORM,
             .biHeight = image->height,
@@ -88,7 +88,9 @@ enum read_status from_bmp(FILE * file, struct image * image) {
         return check_status;
     }
     *image = image_create(header.biWidth, header.biHeight);
-
+    if(!image->data) {
+        return READ_ALLOC_ERROR;
+    }
 
     const uint8_t padding = get_padding(image->width);
     if(fseek(file, header.bOffBits, SEEK_SET) != 0) { //
