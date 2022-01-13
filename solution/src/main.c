@@ -1,3 +1,5 @@
+#include "errors_types.h"
+#include "find_error.h"
 #include "image.h"
 #include "rotation.h"
 #include "serialization.h"
@@ -16,8 +18,13 @@ int main(int argc, char* const argv []) {
     if (!status){
         exit(EXIT_FAILURE);
     }
-    struct image new_image = {0};
-    new_image = image_create(image.height, image.width);
+    struct image new_image = image_create(image.height, image.width);
+
+    if(!new_image.data){
+        free(image.data);
+        print_error(open_msg[READ_ALLOC_ERROR]);
+        exit(EXIT_FAILURE);
+    }
     rotate(&image, new_image);
     bool new_status = create_pic(argv[2], &image, &new_image);
 
