@@ -16,6 +16,6 @@ struct image {
 
 
 
-struct image create_image(const uint64_t width, const uint64_t height);
+struct image image_create(const uint64_t width, const uint64_t height);
 
 #endif

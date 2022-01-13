@@ -16,6 +16,6 @@ enum open_status {
 };
 
 bool read_pic (char*, struct image *);
-bool create_pic(char*, struct image *);
+bool create_pic(char*, struct image *, struct image *);
 
 #endif

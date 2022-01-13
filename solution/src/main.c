@@ -1,3 +1,5 @@
+#include "image.h"
+#include "rotation.h"
 #include "serialization.h"
 #include <stdbool.h>
 #include <stdlib.h>
@@ -14,8 +16,11 @@ int main(int argc, char* const argv []) {
     if (!status){
         exit(EXIT_FAILURE);
     }
+    struct image new_image = {0};
+    new_image = image_create(image.height, image.width);
+    rotate(&image, new_image);
+    bool new_status = create_pic(argv[2], &image, &new_image);
 
-    bool new_status = create_pic(argv[2], &image);
     if(!new_status) {
         exit(EXIT_FAILURE);
     }

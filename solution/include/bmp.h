@@ -42,9 +42,13 @@ struct  __attribute__((packed))  bmp_header {
 
 enum read_status  {
     READ_OK = 0,
+    READ_ERROR,
     READ_INVALID_SIGNATURE,
     READ_INVALID_BITS,
-    READ_INVALID_HEADER
+    READ_INVALID_HEADER,
+    READ_INVALID_PLANES,
+    READ_ALLOC_ERROR
+
 
 };
 
@@ -57,6 +61,6 @@ enum  write_status  {
 
 
 enum read_status from_bmp(FILE * file, struct image * image);
-enum write_status to_bmp_and_rotate(FILE * file, struct image * image);
+enum write_status to_bmp(FILE * file, struct image * image, struct image *);
 
 #endif
