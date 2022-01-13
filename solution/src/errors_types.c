@@ -9,14 +9,14 @@
         [READ_ALLOC_ERROR] = "allocation error\n",
         [READ_INVALID_HEADER] = "read invalid size if header\n",
 
-}
+};
 
  const char* write_msg[] = {
         [WRITE_OK] = "write ok\n",
-        [WRITE_ERROR] = "write erros\n"
-}
+        [WRITE_ERROR] = "write erros\n",
+};
 
  const char* open_msg[] = {
         [OPEN_OK] = "open ok\n",
-        [OPEN_ERROR] = "open error\n"
-}
+        [OPEN_ERROR] = "open error\n",
+};
