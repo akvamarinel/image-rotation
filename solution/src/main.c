@@ -16,7 +16,6 @@ int main(int argc, char* const argv []) {
     bool status = read_pic(argv[1], &image);
 
 
-
     if (!status){
         exit(EXIT_FAILURE);
     }
